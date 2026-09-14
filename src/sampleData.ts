@@ -1,0 +1,60 @@
+import { DeteccionItem } from './types';
+
+export const SAMPLE_DETECCIONES: Record<string, DeteccionItem> = {
+  evt_001: {
+    sensor_id: 'AGUA-MALECON-01',
+    evento: 'agua_detectada',
+    valor_a0: 285,
+    estado_sensor: 'Alerta Preventiva',
+    estado_superficie: 'Anegamiento Leve',
+    fecha_hora: '2025-05-14 09:42:15',
+  },
+  evt_002: {
+    sensor_id: 'PIR-MALECON-02',
+    evento: 'movimiento_detectado',
+    valor_a0: 210,
+    estado_sensor: 'Activo',
+    estado_superficie: 'Húmeda',
+    fecha_hora: '2025-05-14 09:38:00',
+  },
+  evt_003: {
+    sensor_id: 'AGUA-LASPENAS-01',
+    evento: 'agua_detectada',
+    valor_a0: 340,
+    estado_sensor: 'Nivel Alto',
+    estado_superficie: 'Acumulación de Agua',
+    fecha_hora: '2025-05-14 09:15:22',
+  },
+  evt_004: {
+    sensor_id: 'AGUA-URDESA-03',
+    evento: 'agua_detectada',
+    valor_a0: 160,
+    estado_sensor: 'Estable',
+    estado_superficie: 'Húmeda',
+    fecha_hora: '2025-05-14 08:50:11',
+  },
+  evt_005: {
+    sensor_id: 'PIR-SAMBORONDON-01',
+    evento: 'movimiento_detectado',
+    valor_a0: 80,
+    estado_sensor: 'Normal',
+    estado_superficie: 'Seca',
+    fecha_hora: '2025-05-14 08:20:45',
+  },
+  evt_006: {
+    sensor_id: 'AGUA-CENTRO-04',
+    evento: 'agua_detectada',
+    valor_a0: 410,
+    estado_sensor: 'Alerta Crítica',
+    estado_superficie: 'Inundación Parcial',
+    fecha_hora: '2025-05-14 07:55:30',
+  },
+  evt_007: {
+    sensor_id: 'PIR-PUERTO-02',
+    evento: 'movimiento_detectado',
+    valor_a0: 120,
+    estado_sensor: 'Activo',
+    estado_superficie: 'Seca',
+    fecha_hora: '2025-05-14 07:10:04',
+  },
+};

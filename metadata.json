@@ -1,0 +1,6 @@
+{
+  "name": "Monitoreo Ambiental Guayaquil - IoT & AI",
+  "description": "Sistema de monitoreo en tiempo real de inundaciones y sensores IoT para la ciudad de Guayaquil con simulación visual de agua e inteligencia artificial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
