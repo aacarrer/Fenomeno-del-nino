@@ -2,5 +2,7 @@
   "name": "Monitoreo Ambiental Guayaquil - IoT & AI",
   "description": "Sistema de monitoreo en tiempo real del Fenómeno del Niño e inundación urbana para Guayaquil con simulación visual de agua e inteligencia artificial.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

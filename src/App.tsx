@@ -3,6 +3,7 @@ import { useDetecciones } from './hooks/useDetecciones';
 import { Header } from './components/Header';
 import { CityWaterAnimation } from './components/CityWaterAnimation';
 import { GeminiAnalysis } from './components/GeminiAnalysis';
+import { WaterLevelChart } from './components/WaterLevelChart';
 import { EventsTable } from './components/EventsTable';
 import { MetricCards } from './components/MetricCards';
 import { FilterState, DeteccionItem } from './types';
@@ -104,7 +105,10 @@ export default function App() {
         {/* 3. Gemini AI Analysis Section */}
         <GeminiAnalysis items={filteredItems} valorA0={currentA0} />
 
-        {/* 4. Filterable Events History Table */}
+        {/* 4. Statistical Dashboard Chart for Water Sensor vs Date & Time */}
+        <WaterLevelChart items={filteredItems} currentA0={currentA0} />
+
+        {/* 5. Filterable Events History Table */}
         <EventsTable
           items={filteredItems}
           filters={filters}
