@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import { useDetecciones } from './hooks/useDetecciones';
-import { HeaderStats } from './components/HeaderStats';
+import { Header } from './components/Header';
 import { CityWaterAnimation } from './components/CityWaterAnimation';
 import { GeminiAnalysis } from './components/GeminiAnalysis';
 import { EventsTable } from './components/EventsTable';
+import { MetricCards } from './components/MetricCards';
 import { FilterState, DeteccionItem } from './types';
-import { ShieldCheck, MapPin, Radio, Activity } from 'lucide-react';
+import { ShieldCheck, MapPin, Radio } from 'lucide-react';
 
 export default function App() {
   const {
@@ -84,18 +85,15 @@ export default function App() {
           </div>
         )}
 
-        {/* 1. Header & Summary Statistics */}
-        <HeaderStats
-          totalCount={filteredItems.length}
-          currentA0={currentA0}
-          lastEvent={lastEventText}
+        {/* 1. Header with FENOMENO DEL NINO Title */}
+        <Header
           isOnline={isOnline}
           isConnecting={isConnecting}
           onRefresh={fetchData}
           usingSampleData={usingSampleData}
         />
 
-        {/* 2. City Skyline SVG & Animated Water Level Graphic */}
+        {/* 2. City Skyline SVG & Animated Water Level Graphic: Inundación Urbana */}
         <CityWaterAnimation
           valorA0={currentA0}
           maxValor={500}
@@ -112,6 +110,13 @@ export default function App() {
           filters={filters}
           onFilterChange={setFilters}
           onResetFilters={handleResetFilters}
+        />
+
+        {/* 5. Telemetry Metric Cards: Total de Eventos, Nivel Actual (A0), Última Actividad (Moved to bottom) */}
+        <MetricCards
+          totalCount={filteredItems.length}
+          currentA0={currentA0}
+          lastEvent={lastEventText}
         />
 
         {/* Footer */}

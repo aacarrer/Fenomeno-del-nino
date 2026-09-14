@@ -53,15 +53,15 @@ export const CityWaterAnimation: React.FC<CityWaterAnimationProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-100">
         <div>
           <div className="flex items-center gap-2">
-            <span className="p-2 rounded-xl bg-sky-50 text-sky-600 border border-sky-100">
-              <Waves className="w-5 h-5" />
+            <span className="p-2.5 rounded-2xl bg-sky-100 text-sky-600 border border-sky-200 shadow-xs">
+              <Waves className="w-6 h-6" />
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
-              Nivel del Río / Inundación Urbana
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">
+              Inundación Urbana
             </h2>
           </div>
-          <p className="text-base sm:text-lg text-slate-600 mt-1 font-normal">
-            Representación dinámica estilizada de la silueta de Guayaquil frente al Río Guayas
+          <p className="text-base sm:text-lg text-slate-600 mt-1.5 font-medium pl-1">
+            Simulación dinámica de cota de inundación sobre la silueta urbana de Guayaquil frente al Río Guayas
           </p>
         </div>
 
