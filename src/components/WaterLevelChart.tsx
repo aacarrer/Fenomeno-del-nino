@@ -21,7 +21,10 @@ import {
   AlertTriangle,
   Info,
   Layers,
+  FileDown,
+  Loader2,
 } from 'lucide-react';
+import { exportStatisticalReportPDF } from '../utils/pdfExport';
 
 interface WaterLevelChartProps {
   items: DeteccionItem[];
@@ -41,6 +44,18 @@ interface ChartDataPoint {
 
 export const WaterLevelChart: React.FC<WaterLevelChartProps> = ({ items, currentA0 }) => {
   const [chartType, setChartType] = useState<'area' | 'line'>('area');
+  const [isExporting, setIsExporting] = useState(false);
+
+  const handleDownloadPDF = () => {
+    setIsExporting(true);
+    try {
+      exportStatisticalReportPDF(chartData, stats, currentA0);
+    } catch (err) {
+      console.error('Error generando gráfico para PDF:', err);
+    } finally {
+      setIsExporting(false);
+    }
+  };
 
   // Process and sort water sensor data chronologically
   const chartData: ChartDataPoint[] = useMemo(() => {
@@ -210,8 +225,28 @@ export const WaterLevelChart: React.FC<WaterLevelChartProps> = ({ items, current
           </div>
         </div>
 
-        {/* View Controls & Visual Legend */}
+        {/* View Controls & Visual Legend & PDF Export */}
         <div className="flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={handleDownloadPDF}
+            disabled={isExporting}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-sky-600 disabled:opacity-60 text-white text-xs font-bold transition-all shadow-xs hover:shadow cursor-pointer"
+            title="Descargar reporte estadístico en PDF con el gráfico incluido"
+          >
+            {isExporting ? (
+              <>
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                <span>Generando PDF...</span>
+              </>
+            ) : (
+              <>
+                <FileDown className="w-3.5 h-3.5" />
+                <span>Descargar PDF</span>
+              </>
+            )}
+          </button>
+
           <div className="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-200 text-xs font-bold">
             <button
               type="button"
@@ -338,7 +373,7 @@ export const WaterLevelChart: React.FC<WaterLevelChartProps> = ({ items, current
       </div>
 
       {/* Chart Canvas Area */}
-      <div className="w-full h-80 sm:h-96 pt-2">
+      <div className="w-full h-80 sm:h-96 pt-2 bg-white rounded-2xl">
         {chartData.length === 0 ? (
           <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
             <Droplets className="w-10 h-10 mb-2 text-slate-300" />

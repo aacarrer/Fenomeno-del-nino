@@ -6,7 +6,6 @@ import { GeminiAnalysis } from './components/GeminiAnalysis';
 import { WaterLevelChart } from './components/WaterLevelChart';
 import { EventsTable } from './components/EventsTable';
 import { MetricCards } from './components/MetricCards';
-import { SwipeTabs } from './components/SwipeTabs';
 import { SwipeContainer } from './components/SwipeContainer';
 import { FilterState, DeteccionItem } from './types';
 import { ShieldCheck, MapPin, Radio } from 'lucide-react';
@@ -98,14 +97,7 @@ export default function App() {
           usingSampleData={usingSampleData}
         />
 
-        {/* 2. Swipe Navigation Tabs Bar */}
-        <SwipeTabs
-          currentTab={activeTab}
-          onChangeTab={setActiveTab}
-          totalTabs={3}
-        />
-
-        {/* 3. Swipeable Carousel Panels */}
+        {/* 2. Swipeable Carousel Panels */}
         <SwipeContainer
           activeTab={activeTab}
           totalTabs={3}

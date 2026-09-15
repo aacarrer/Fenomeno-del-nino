@@ -1,6 +1,7 @@
 import React from 'react';
-import { Search, Calendar, Filter, RotateCcw, Droplet, Radio, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Search, Calendar, Filter, RotateCcw, Droplet, Radio, CheckCircle, AlertTriangle, FileDown } from 'lucide-react';
 import { DeteccionItem, EventFilterType, FilterState } from '../types';
+import { exportEventsHistoryPDF } from '../utils/pdfExport';
 
 interface EventsTableProps {
   items: DeteccionItem[];
@@ -31,14 +32,25 @@ export const EventsTable: React.FC<EventsTableProps> = ({
               Registros cronológicos transmitidos por los nodos IoT desplegados
             </p>
           </div>
-          <button
-            type="button"
-            onClick={onResetFilters}
-            className="self-start sm:self-auto text-sm sm:text-base font-semibold text-sky-600 hover:text-sky-700 hover:bg-sky-50 px-3.5 py-2 rounded-xl transition-colors flex items-center gap-2 cursor-pointer border border-transparent hover:border-sky-200"
-          >
-            <RotateCcw className="w-4 h-4" />
-            <span>Restablecer Filtros</span>
-          </button>
+          <div className="flex items-center gap-2.5 self-start sm:self-auto">
+            <button
+              type="button"
+              onClick={() => exportEventsHistoryPDF(items, filters)}
+              className="px-3.5 py-2 text-xs sm:text-sm font-bold text-white bg-slate-900 hover:bg-sky-600 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer shadow-xs hover:shadow"
+              title="Descargar historial de eventos filtrado en PDF"
+            >
+              <FileDown className="w-4 h-4" />
+              <span>Descargar PDF</span>
+            </button>
+            <button
+              type="button"
+              onClick={onResetFilters}
+              className="text-sm sm:text-base font-semibold text-sky-600 hover:text-sky-700 hover:bg-sky-50 px-3.5 py-2 rounded-xl transition-colors flex items-center gap-2 cursor-pointer border border-transparent hover:border-sky-200"
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>Restablecer Filtros</span>
+            </button>
+          </div>
         </div>
 
         {/* Filter Inputs Grid with larger, accessible fields */}
