@@ -6,6 +6,8 @@ import { GeminiAnalysis } from './components/GeminiAnalysis';
 import { WaterLevelChart } from './components/WaterLevelChart';
 import { EventsTable } from './components/EventsTable';
 import { MetricCards } from './components/MetricCards';
+import { SwipeTabs } from './components/SwipeTabs';
+import { SwipeContainer } from './components/SwipeContainer';
 import { FilterState, DeteccionItem } from './types';
 import { ShieldCheck, MapPin, Radio } from 'lucide-react';
 
@@ -28,6 +30,8 @@ export default function App() {
     time: '',
     type: 'todos',
   });
+
+  const [activeTab, setActiveTab] = useState<number>(0);
 
   // Apply filters identically to original logic
   const filteredItems = useMemo(() => {
@@ -94,29 +98,47 @@ export default function App() {
           usingSampleData={usingSampleData}
         />
 
-        {/* 2. City Skyline SVG & Animated Water Level Graphic: Inundación Urbana */}
-        <CityWaterAnimation
-          valorA0={currentA0}
-          maxValor={500}
-          onManualChange={(val) => setManualValorA0(val)}
-          isSimulated={isManualSimulated}
+        {/* 2. Swipe Navigation Tabs Bar */}
+        <SwipeTabs
+          currentTab={activeTab}
+          onChangeTab={setActiveTab}
+          totalTabs={3}
         />
 
-        {/* 3. Gemini AI Analysis Section */}
-        <GeminiAnalysis items={filteredItems} valorA0={currentA0} />
+        {/* 3. Swipeable Carousel Panels */}
+        <SwipeContainer
+          activeTab={activeTab}
+          totalTabs={3}
+          onChangeTab={setActiveTab}
+        >
+          {/* Panel 0 (Principal): Inundación Urbana & Análisis Inteligente Gemini */}
+          <div key="panel-principal" className="space-y-8">
+            <CityWaterAnimation
+              valorA0={currentA0}
+              maxValor={500}
+              onManualChange={(val) => setManualValorA0(val)}
+              isSimulated={isManualSimulated}
+            />
+            <GeminiAnalysis items={filteredItems} valorA0={currentA0} />
+          </div>
 
-        {/* 4. Statistical Dashboard Chart for Water Sensor vs Date & Time */}
-        <WaterLevelChart items={filteredItems} currentA0={currentA0} />
+          {/* Panel 1 (Swipe 1): Dashboard Estadístico */}
+          <div key="panel-dashboard" className="space-y-8">
+            <WaterLevelChart items={filteredItems} currentA0={currentA0} />
+          </div>
 
-        {/* 5. Filterable Events History Table */}
-        <EventsTable
-          items={filteredItems}
-          filters={filters}
-          onFilterChange={setFilters}
-          onResetFilters={handleResetFilters}
-        />
+          {/* Panel 2 (Swipe 2): Historial de Eventos IoT */}
+          <div key="panel-events" className="space-y-8">
+            <EventsTable
+              items={filteredItems}
+              filters={filters}
+              onFilterChange={setFilters}
+              onResetFilters={handleResetFilters}
+            />
+          </div>
+        </SwipeContainer>
 
-        {/* 5. Telemetry Metric Cards: Total de Eventos, Nivel Actual (A0), Última Actividad (Moved to bottom) */}
+        {/* 4. Telemetry Metric Cards: Total de Eventos, Nivel Actual (A0), Última Actividad (At the bottom) */}
         <MetricCards
           totalCount={filteredItems.length}
           currentA0={currentA0}
